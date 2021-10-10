@@ -21,13 +21,15 @@
         </button>
         <div id="nav-collapsibleNavbar" class="navbar-collapse collapse">
             <ul class="navbar-nav">
-                {#for route in headerMenu}
-                    {#if route.getRouteGroup == 5}
-                        <li class="nav-item">
-                            <a href="{route.path}" target="_self" class="nav-link">{route.getTitle}</a>
-                        </li>
-                    {/if}
-                {/for}
+                {#if hasMenu}
+                    {#for route in headerMenu}
+                        {#if route.getRouteGroup == 5}
+                            <li class="nav-item">
+                                <a href="{route.path}" target="_self" class="nav-link">{route.getTitle}</a>
+                            </li>
+                        {/if}
+                    {/for}
+                {/if}
             </ul>
 
             <ul class="navbar-nav ml-auto">

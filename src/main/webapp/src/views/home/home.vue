@@ -30,7 +30,9 @@
               <actionButton inputIconShow="search" @buttonFunction="searchProduct"></actionButton>
             </span>
           </div>
-          <div class="mainPart2"></div>
+          <div class="mainPart2">
+
+          </div>
         </div>
       </div>
       <div class="col-lg-3 order-3 order-lg-3">

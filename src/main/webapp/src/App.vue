@@ -5,7 +5,6 @@
       <div id="layouts">
         <div class="ui-layout-center fullHeight row">
           <div class="col-lg-12">
-<!--            <Home msg="Welcome to Your Vue.js App"/>-->
             <router-view></router-view>
           </div>
         </div>

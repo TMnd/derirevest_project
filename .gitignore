@@ -107,5 +107,5 @@ dist
 node_modules/
 .idea/
 .mvn/
-.target/
+/target/
 src/main/resources/application.properties

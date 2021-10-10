@@ -40,20 +40,21 @@ public class IndexResource {
                                                     User user,
                                                     Integer currentYear,
                                                     String historicContext,
-                                                    List<Route> headerMenu);
+                                                    List<Route> headerMenu,
+                                                    Boolean hasMenu);
     }
 
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance get( @QueryParam("type") String historicType) {
-        System.out.println(historicType);
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         List<Route> routeList = routesService.getRoutes().getRouteList();
+        Boolean hasMenu = loggedUser.getRoles().contains("ROUTE_REPORTS");
 
         if(historicType == null){
             historicType = "base";
         }
 
-        return Templates.index(message, version, autor, loggedUser, currentYear, historicType, routeList);
+        return Templates.index(message, version, autor, loggedUser, currentYear, historicType, routeList, hasMenu);
     }
 }

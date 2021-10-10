@@ -52,6 +52,7 @@ public class UserResource {
         roleList.remove(real_access);
 
         loggedUser.setNome(username);
+        loggedUser.setRoles(roleList);
 
         return Map.of(
                 "username",username,
