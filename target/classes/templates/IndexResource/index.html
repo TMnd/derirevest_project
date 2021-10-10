@@ -1,0 +1,50 @@
+{@String applicationName, @String applicationVersion, @String applicatioanAutor,
+@org.derirevest.autentication.model.User user, @Integer currentYear, @String historicContext,
+@List<@org.derirevest.routes.model.Route> headerMenu}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{applicationName}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <style>
+            #layouts{
+                zoom: 1;
+                overflow: hidden !important;
+                width: auto;
+                height: auto;
+                margin-top: 25px;
+                position: absolute;
+                inset: 56px 0px;
+                _width:		100%; /* min-width for IE6 */
+                font-family: Avenir, Helvetica, Arial, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-align: center;
+                color: #2c3e50;
+            }
+
+        </style>
+    </head>
+    <body>
+        {#include Layout/header.html}
+            {#applicationName}{applicationName}{/}
+            {#userName}{user.getNome}{/}
+        {/}
+        <div id="layouts" class="ui-layout-container" style="overflow: hidden;">
+            <h1>item.name</h1>
+            <h3>{user.getNome}</h3>
+            <div>Price: item.price</div>
+            <div>{historicContext}</div>
+        </div>
+        {#include Layout/footer.html}
+            {#applicationName}{applicationName}{/}
+            {#applicationVersion}{applicationVersion}{/}
+            {#applicationAutor}{applicationAutor}{/}
+            {#currentYear}{currentYear}{/}
+        {/}
+    </body>
+</html>

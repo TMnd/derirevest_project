@@ -1,0 +1,44 @@
+# App basic configuration
+quarkus.application.name=Derirevest S.U Lda
+quarkus.application.version=0.1.0
+quarkus.application.autor=João Luís Amaral
+quarkus.http.port=8081
+quarkus.http.test-port=8888
+quarkus.http.host=0.0.0.0
+dev.server.url=
+
+# Log
+quarkus.log.level=INFO
+
+# OIDC Configuration
+quarkus.oidc.application-type=web-app
+quarkus.oidc.auth-server-url=http://${dev.server.url}:8090/auth/realms/Derirevest
+quarkus.oidc.client-id= ***
+quarkus.oidc.credentials.secret= ***
+quarkus.oidc.tls.verification=none
+quarkus.oidc.roles.source=accesstoken
+
+quarkus.oidc.logout.path=/logout
+quarkus.oidc.logout.post-logout-path=/
+
+quarkus.http.auth.permission.authenticated.paths=/*
+quarkus.http.auth.permission.authenticated.policy=authenticated
+
+# Enable Policy Enforcement
+quarkus.keycloak.policy-enforcer.enable=true
+
+
+# datasource configuration
+quarkus.datasource.db-kind = postgresql
+quarkus.datasource.username = ***
+quarkus.datasource.password = ***
+quarkus.datasource.jdbc.url = jdbc:postgresql://${dev.server.url}:5432/dev
+
+# drop and create the database at startup (use `update` to only update the schema)
+quarkus.hibernate-orm.database.generation=update
+
+#quarkus.hibernate-orm.mapping-files=META-INF/my-orm.xml
+
+# configure the mongoDB client for a single instance on localhost
+database.mongodb.databaseName = dev
+quarkus.mongodb.connection-string = mongodb://***:***@${dev.server.url}:27017

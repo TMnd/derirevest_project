@@ -1,0 +1,1 @@
+In this directory, we are going to store all assets files. Here we want to save fonts, icons, images, styles etc.

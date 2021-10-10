@@ -1,0 +1,139 @@
+h3 {
+    margin: 40px 0 0;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+li {
+    display: inline-block;
+    margin: 0 10px;
+}
+a {
+    color: #42b983;
+}
+
+.homeFirstRow{
+    padding-top:25px;
+}
+
+.homeFirstRow_section{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.titleArea{
+    background-color: rgba(220,220,220, 0.2);
+    width: 90%;
+    height: 38px;
+    margin-bottom: 17px;
+    display: flex;
+    /*justify-content: center;*/
+}
+
+.title{
+    font-size: 17px;
+    margin-top: 8px !important;
+    margin-bottom: 17px;
+
+}
+
+.areaWidth{
+    width: 90%;
+    text-align: center;
+}
+
+.homeSecondRow{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.homeSecondRow-singlearea{
+    color: black;
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.homeSecondRow-singlearea-circle{
+    cursor: not-allowed;
+    pointer-events: none;
+    margin-top: 10%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    height: 100px;
+    width: 100px;
+    background: #212529;
+    color: black;
+}
+
+.homeSecondRow-singlearea-circle-info{
+    display: table-cell;
+    position: relative;
+    vertical-align: middle;
+    font-size: 13px;
+}
+
+.menuIcon{
+    position: relative;
+    top: 1px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    width: 1em;
+    font-size: 30px;
+    color: white;
+    margin-bottom: 6px;
+}
+
+.homeSecondRow-singlearea span{
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: white;
+}
+
+#menu li {display: inline-block;}
+#menu a {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 0.8vw;
+    text-align: center;
+    line-height: 6.5vw;
+    margin: 5%;
+}
+
+.dot {
+    margin-right: 10px;
+    height: 125px;
+    width: 125px;
+    background-color: #212529;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot div{
+    color: white;
+}
+
+.image{
+    margin-top: 23px;
+    width: 55px;
+    padding-bottom: 5px;
+}
+
+hr.home_brakLine {
+    border-top: 1px dotted;
+}
+
+.disabledRoute {
+    pointer-events: none;
+    opacity: 0.6;
+}

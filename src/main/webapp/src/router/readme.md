@@ -1,0 +1,3 @@
+Inside this directory you can store all files related to vue-router. It could be just index.ts with router and routes in one place (in this case it probably a good idea to store this file in src root). I prefer to separate router and routes into two different files to avoid mess.
+
+In this article (https://itnext.io/vue-tricks-smart-router-for-vuejs-93c287f46b50) you can read how to create an automatic router for your application.

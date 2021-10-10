@@ -1,0 +1,40 @@
+<style>
+    .customFooter{
+        z-index: 2;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        font-size: 13px;
+    }
+    .aboutButton {
+        position: relative;
+        float: right;
+        bottom: 8px;
+    }
+</style>
+
+<footer class="text-lg-start bg-light text-muted customFooter">
+    <div class="text-left p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        ©{#insert currentYear}{/} Copyright: {#insert applicationAutor}{/}
+        <button class="btn aboutButton btn-sm btn-secondary"  data-toggle="modal" data-target="#exampleModalCenter">
+            sobre
+        </button>
+    </div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">{#insert applicationName}{/}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="my-4">{#insert applicationName}{/}@{#insert applicationVersion}{/}</p>
+            </div>
+        </div>
+    </div>
+</div>

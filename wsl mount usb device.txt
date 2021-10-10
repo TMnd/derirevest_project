@@ -1,0 +1,3 @@
+mount -t drvfs f: /mnt/f
+
+.\mvnw exec:exec@npm-watch quarkus:dev

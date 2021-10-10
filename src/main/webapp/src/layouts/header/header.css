@@ -1,0 +1,51 @@
+/* Nav bar fixed pointed 1 */
+.navbar-expand-lg{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+nav{
+    z-index: 3;
+}
+
+.ml-auto{
+    position: absolute;
+    right: 10px;
+}
+
+.dropdown-menu{
+    right: 0;
+}
+
+.dropdown-menu li{
+    width: 87%;
+}
+
+@media (max-width: 991px) {
+    .navbar-expand-lg  > .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .ml-auto{
+        position: relative;
+        right: 0;
+    }
+
+    .dropdown-menu li{
+        width: 95%;
+    }
+}
+
+@media (max-width: 575px) {
+    .navbar-expand-lg  > .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .ml-auto{
+        position: relative;
+        right: 0;
+    }
+    .dropdown-menu li{
+        width: 95%;
+    }
+}
