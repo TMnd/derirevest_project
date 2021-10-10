@@ -1,0 +1,32 @@
+<style>
+    .cardArea{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .custom-card{
+        width: 18rem;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        float: left;
+    }
+    .card-body a{
+        background-color: #212529 !important;
+        border-color: rgba(0, 0, 0, 0.05) !important;
+    }
+</style>
+
+<div class="cardArea">
+    {#for route in headerMenu}
+        {#if route.getRouteGroup == 5}
+            <div class="card custom-card">
+                <div class="card-body">
+                    <h5 class="card-title">{route.getTitle}</h5>
+                    <a href="{route.path}" class="btn btn-primary">
+                        <i class="bi bi-forward"></i>
+                    </a>
+                </div>
+            </div>
+        {/if}
+    {/for}
+</div>
