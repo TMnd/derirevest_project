@@ -18,20 +18,27 @@
             <radialMenuWithLabel labelMsg="Não entregue" radial-color="#f8d7da" @menuOptionFunction="addDeliveryFilter(0)"></radialMenuWithLabel>
           </div>
           <ul class="list-group areaWidth"  v-show="this.checkAuthorization('DELIVERY_SEE_LIST')">
-            <deliverDataArea v-for="(i, index) in deliversData" v-show="selectedDeliveryFilter.includes(parseInt(i.estado))" v-bind:key="index" :deliver="i" :tooltipMsg="i.mensagem" ></deliverDataArea>
+            <informationDataArea v-for="(i, index) in deliversData" v-show="selectedDeliveryFilter.includes(parseInt(i.estado))"
+                                 v-bind:key="index" :inputData="i" :tooltipMsg="i.mensagem"
+                                 :contexto="'delivery'">
+            </informationDataArea>
           </ul>
         </div>
       </div>
       <div class="col-lg-6 order-1 order-lg-2">
         <div class="homeFirstRow_section">
-          <div class="input-group">
+          <div class="input-group" style="margin-bottom: 10px;">
             <input class="form-control py-2" type="search" placeholder="Insira o codigo do produto..." id="example-search-input">
             <span class="input-group-append">
-              <actionButton inputIconShow="search" @buttonFunction="searchProduct"></actionButton>
+              <actionButton style="line-height: 1.8;" inputIconShow="search" @buttonFunction="searchProduct"></actionButton>
             </span>
           </div>
-          <div class="mainPart2">
-
+          <div class="mainPart2" v-show="showSearchResult">
+            <span>
+              <ul class="list-group"  v-show="this.checkAuthorization('DELIVERY_SEE_LIST')">
+                <informationDataArea v-for="(i, index) in searchResult" v-bind:key="index" :inputData="i" :contexto="'searchResult'"></informationDataArea>
+              </ul>
+            </span>
           </div>
         </div>
       </div>
@@ -68,7 +75,8 @@
     <b-row id="menu">
       <b-col cols="12">
         <div class="homeSecondRow">
-          <div class="homeSecondRow-singlearea disabledRoute" v-for="(item, index) in optionsList.options.routes.slice(1)" v-bind:key="index" v-if="checkRoutePermission(item.routeGroup) && item.routeGroup!==5">
+          <div class="homeSecondRow-singlearea disabledRoute" v-for="(item, index) in optionsList.options.routes.slice(1)"
+               v-bind:key="index" v-if="checkRoutePermission(item.routeGroup) && item.routeGroup!==5">
             <div class="homeSecondRow-singlearea-circle">
               <div class="homeSecondRow-singlearea-circle-info">
                 <iconTemplate iconClass="menuIcon" :iconType="item.icon"></iconTemplate>

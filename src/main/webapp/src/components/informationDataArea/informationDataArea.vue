@@ -1,0 +1,18 @@
+<template>
+    <li :class="classStyle" :v-show="inputData.estado" v-if="contexto === 'delivery'">
+        <div class="deliverInfo">
+            {{ inputData.ref_id_clientes.nome }} <br> {{ inputData.ref_id_produtos.nome }}
+        </div>
+        <span v-if="showInfo">
+            <tooltip :tooltipMsg="tooltipMsg"></tooltip>
+        </span>
+    </li>
+    <li :class="classStyle" :v-show="inputData.estado" v-else-if="contexto === 'searchResult'">
+        <div class="text-center" style="margin-top: 1.3%">
+            {{ inputData.codigo }} - {{ inputData.nomeProduto }} - {{ inputData.quantidade }} - {{ inputData.preco }}
+        </div>
+    </li>
+</template>
+
+<script src="./informationDataArea.view.js"></script>
+<style src="./informationDataArea.css"></style>

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import { Splitpanes, Pane } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
-import deliverDataArea from "@/components/deliverDataArea/deliverDataArea";
+import informationDataArea from "@/components/informationDataArea/informationDataArea";
 import actionButton from "../../components/actionButton/actionButton";
 import radialMenuWithLabel from "../../components/radialMenuWithLabel/radialMenuWithLabel";
 import tableTBodyLine from "../../components/tableTBodyLine/tableTBodyLine";
@@ -11,7 +11,7 @@ export default {
     components: {
         Splitpanes,
         Pane,
-        deliverDataArea,
+        informationDataArea,
         actionButton,
         radialMenuWithLabel,
         tableTBodyLine,
@@ -30,7 +30,24 @@ export default {
             deliversData: [],
             productAlerts: [],
             selectedDeliveryFilter: [0,1,2],
-            selectedAlertsFilter: [0,1]
+            selectedAlertsFilter: [0,1],
+            showSearchResult: false,
+            searchResult: [
+                {
+                    "codigo": "A12R23",
+                    "nomeProduto": "porta 1",
+                    "quantidade": 2,
+                    "preco": "2€",
+                    "estado": 4
+                },
+                {
+                    "codigo": "aaaaa",
+                    "nomeProduto": "porta 2",
+                    "quantidade": 4,
+                    "preco": "1€",
+                    "estado": 4
+                }
+            ]
         }
     },
     created: function() {
@@ -40,7 +57,8 @@ export default {
     },
     methods: {
         searchProduct: function () {
-            alert("searchProduct");
+            this.showSearchResult = !this.showSearchResult;
+            console.log(this.showSearchResult);
         },
         refreshAlert: function () {
             this.getProductAlertsData();
