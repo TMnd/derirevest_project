@@ -22,11 +22,11 @@ export default {
         if(this.contexto === 'delivery'){
             switch (this.inputData.estado) {
                 case "0":
-                    this.classStyle = "list-group-item list-group-item-danger";
+                    this.classStyle = "list-group-item empty";
                     this.showInfo = true;
                     break;
                 case "1":
-                    this.classStyle = "list-group-item list-group-item-success";
+                    this.classStyle = "list-group-item enoughQuantity";
                     break;
                 case "2":
                     this.classStyle = "list-group-item list-group-item-secondary";

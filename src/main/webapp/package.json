@@ -10,6 +10,7 @@
     "prod": "vue-cli-service build --dest ../resources/META-INF/resources/"
   },
   "dependencies": {
+    "@andresouzaabreu/vue-data-table": "^3.2.1",
     "@sideway/address": "^4.1.2",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta3",
@@ -17,6 +18,8 @@
     "cache-loader": "^4.1.0",
     "color-convert": "^2.0.1",
     "core-js": "^3.6.5",
+    "datatables.net-dt": "^1.11.3",
+    "datatables.net-responsive-dt": "^2.2.9",
     "event-pubsub": "^5.0.3",
     "joi": "^17.4.1",
     "jquery": "^3.6.0",
@@ -27,6 +30,7 @@
     "vue-cookies": "^1.7.4",
     "vue-loader": "^15.9.8",
     "vue-router": "^3.5.2",
+    "vuetify": "^2.5.10",
     "vx-easyui": "^1.2.26"
   },
   "devDependencies": {

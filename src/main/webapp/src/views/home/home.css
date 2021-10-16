@@ -139,10 +139,55 @@ hr.home_brakLine {
 }
 
 .mainPart2{
-    overflow: auto;
+    /*overflow: auto;*/
     width: 100%;
-    height: 550px;
+    /*height: 550px;*/
     margin-bottom: 10px;
-    border: 1px solid black;
-    border-radius: 8px;
+    /*border: 1px solid black;*/
+    /*border-radius: 8px;*/
+}
+
+.dtr-details{
+    text-align: left;
+    display: grid;
+}
+
+.dtr-details li{
+    padding-bottom: 5px;
+}
+
+.dtr-title{
+    font-weight: bold;
+}
+
+.current{
+    border: 1px solid #212529 !important;
+    background: linear-gradient(to bottom, #212529 0%, #212529 100%) !important;
+}
+
+#searchDataTable_paginate .current{
+    color: white !important;
+}
+
+#searchDataTable_length{
+    padding-bottom: 5px;
+}
+
+.enoughQuantity{
+    background: #5ab072 !important;
+    color: white !important;
+}
+
+.empty{
+    background: #fa5766 !important;
+    color: white !important;
+}
+
+.almostEmpty{
+    background: #fa9e57 !important;
+    color: white !important;
+}
+
+.deliveryOptions:hover{
+    cursor: pointer;
 }

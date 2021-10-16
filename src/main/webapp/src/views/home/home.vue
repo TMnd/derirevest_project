@@ -12,12 +12,12 @@
             </div>
           </div>
           <div style="width: 100%; margin-bottom: 2%;" v-show="this.checkAuthorization('DELIVERY_FILTER')">
-            <radialMenuWithLabel labelMsg="Entregue" radial-color="#d1e7dd" @menuOptionFunction="addDeliveryFilter(1)"></radialMenuWithLabel>
+            <radialMenuWithLabel labelMsg="Entregue" radial-color="#5ab072" @menuOptionFunction="addDeliveryFilter(1)"></radialMenuWithLabel>
             <radialMenuWithLabel labelMsg="Por entregar" radial-color="#e2e3e5" @menuOptionFunction="addDeliveryFilter(2)"></radialMenuWithLabel>
             <br>
-            <radialMenuWithLabel labelMsg="Não entregue" radial-color="#f8d7da" @menuOptionFunction="addDeliveryFilter(0)"></radialMenuWithLabel>
+            <radialMenuWithLabel labelMsg="Não entregue" radial-color="#fa5766" @menuOptionFunction="addDeliveryFilter(0)"></radialMenuWithLabel>
           </div>
-          <ul class="list-group areaWidth"  v-show="this.checkAuthorization('DELIVERY_SEE_LIST')">
+          <ul class="list-group areaWidth" v-show="this.checkAuthorization('DELIVERY_SEE_LIST')">
             <informationDataArea v-for="(i, index) in deliversData" v-show="selectedDeliveryFilter.includes(parseInt(i.estado))"
                                  v-bind:key="index" :inputData="i" :tooltipMsg="i.mensagem"
                                  :contexto="'delivery'">
@@ -34,20 +34,23 @@
             </span>
           </div>
           <div class="mainPart2" v-show="showSearchResult">
-            <table class="table table-striped" style="width: 100%;" v-show="this.checkAuthorization('DELIVERY_SEE_LIST')">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Produto</th>
-                        <th scope="col">Material</th>
-                        <th scope="col">Quantidade</th>
-                        <th scope="col">Preço</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <tableTBodyLine v-for="(i, index)  in searchResult" :rowElements="i"  v-bind:key="index" :contexto="'searchResult'"></tableTBodyLine>
-                </tbody>
-            </table>
+            <div>
+              <table id="searchDataTable" class="table table-striped table-bordered responsive nowrap" style="width:100%" v-show="this.checkAuthorization('DELIVERY_SEE_LIST')">
+                  <thead>
+                      <tr>
+                          <th scope="col"></th>
+                          <th scope="col">Produto</th>
+                          <th scope="col">Categoria</th>
+                          <th scope="col">Material</th>
+                          <th scope="col">Quantidade</th>
+                          <th scope="col">Preço</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tableTBodyLine v-for="(i, index) in searchResult" :rowElements="i"  v-bind:key="index" :contexto="'searchResult'"></tableTBodyLine>
+                  </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -61,16 +64,15 @@
               <actionButton inputIconShow="refresh" @buttonFunction="refreshAlert"></actionButton>
             </div>
           </div>
-          <div style="width: 100%; margin-bottom: 2%;" v-show="this.checkAuthorization('PRODUCT_ALARM_FILTER')">
-            <radialMenuWithLabel labelMsg="Poucas unidades" radial-color="orange" @menuOptionFunction="addAlertFilter(1)"></radialMenuWithLabel>
-            <radialMenuWithLabel labelMsg="Esgotado" radial-color="red" @menuOptionFunction="addAlertFilter(0)"></radialMenuWithLabel>
+          <div class="productAlarm" style="width: 100%; margin-bottom: 2%;" v-show="this.checkAuthorization('PRODUCT_ALARM_FILTER')">
+            <radialMenuWithLabel labelMsg="Poucas unidades" radial-color="#fa9e57" @menuOptionFunction="addAlertFilter(1)"></radialMenuWithLabel>
+            <radialMenuWithLabel labelMsg="Esgotado" radial-color="#fa5766" @menuOptionFunction="addAlertFilter(0)"></radialMenuWithLabel>
           </div>
           <table class="table table-striped areaWidth" v-show="this.checkAuthorization('PRODUCT_ALARM_SEE_LIST')">
             <thead>
             <tr>
               <th scope="col">Produto</th>
               <th scope="col">Quantidade</th>
-              <th scope="col">Estado</th>
             </tr>
             </thead>
             <tbody>

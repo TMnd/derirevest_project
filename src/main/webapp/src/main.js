@@ -8,7 +8,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Router from "./router/index";
 import axios from 'axios';
 import UserModel from "@/store/UserModel";
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
+import vuetify from '@/plugins/vuetify'
 
 let router = "";
 
@@ -83,6 +84,7 @@ function getInitData() {
 getInitData().then(() => {
     new Vue({
         router,
+        vuetify,
         render: h => h(App),
     }).$mount('#app')
 })
