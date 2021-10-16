@@ -34,11 +34,20 @@
             </span>
           </div>
           <div class="mainPart2" v-show="showSearchResult">
-            <span>
-              <ul class="list-group"  v-show="this.checkAuthorization('DELIVERY_SEE_LIST')">
-                <informationDataArea v-for="(i, index) in searchResult" v-bind:key="index" :inputData="i" :contexto="'searchResult'"></informationDataArea>
-              </ul>
-            </span>
+            <table class="table table-striped" style="width: 100%;" v-show="this.checkAuthorization('DELIVERY_SEE_LIST')">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Material</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tableTBodyLine v-for="(i, index)  in searchResult" :rowElements="i"  v-bind:key="index" :contexto="'searchResult'"></tableTBodyLine>
+                </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -65,7 +74,7 @@
             </tr>
             </thead>
             <tbody>
-              <tableTBodyLine v-for="(i, index)  in productAlerts" :rowElements="i"  v-show="selectedAlertsFilter.includes(parseInt(i[productAlerts.length-1].productInventoryState))" v-bind:key="index"></tableTBodyLine>
+              <tableTBodyLine v-for="(i, index)  in productAlerts" :rowElements="i"  v-show="selectedAlertsFilter.includes(parseInt(i[productAlerts.length-1].productInventoryState))" v-bind:key="index" :contexto="'productInventory'"></tableTBodyLine>
             </tbody>
           </table>
         </div>

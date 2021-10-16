@@ -1,4 +1,5 @@
 import tooltip from "@/components/tooltip/tooltip";
+import iconTemplate from "@/components/iconTemplate/iconTemplate";
 
 export default {
     name: "informationDataArea",
@@ -8,7 +9,8 @@ export default {
         contexto: ""
     },
     components: {
-        tooltip
+        tooltip,
+        iconTemplate
     },
     data: function() {
         return {

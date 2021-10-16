@@ -1,0 +1,19 @@
+.icon{
+    /*text-align: right;*/
+    /*width: 29%;*/
+    /*float: left;*/
+    /*margin-right: -39px;*/
+    /*left: 18px;*/
+    /*padding-right: 20px;*/
+    padding-top: 5px;
+}
+
+.icon svg{
+    color: black;
+    font-size: 40px;
+}
+
+.rowSearchResult{
+    text-align: center;
+    vertical-align: middle;
+}

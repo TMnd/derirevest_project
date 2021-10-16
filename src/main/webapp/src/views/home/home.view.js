@@ -34,18 +34,67 @@ export default {
             showSearchResult: false,
             searchResult: [
                 {
+                    "icon": "door",
                     "codigo": "A12R23",
                     "nomeProduto": "porta 1",
                     "quantidade": 2,
                     "preco": "2€",
-                    "estado": 4
+                    "estado": 4,
+                    "material": "madeira"
                 },
                 {
+                    "icon": "door",
                     "codigo": "aaaaa",
                     "nomeProduto": "porta 2",
                     "quantidade": 4,
                     "preco": "1€",
-                    "estado": 4
+                    "estado": 4,
+                    "material": "madeira"
+                },
+                {
+                    "icon": "basket",
+                    "codigo": "qqweqeqweq",
+                    "nomeProduto": "i dont know",
+                    "quantidade": 4,
+                    "preco": "1€",
+                    "estado": 4,
+                    "material": "madeira"
+                },
+                {
+                    "icon": "basket",
+                    "codigo": "qqweqeqweq",
+                    "nomeProduto": "i dont know",
+                    "quantidade": 4,
+                    "preco": "1€",
+                    "estado": 4,
+                    "material": "madeira"
+                },
+                {
+                    "icon": "basket",
+                    "codigo": "qqweqeqweq",
+                    "nomeProduto": "i dont know",
+                    "quantidade": 4,
+                    "preco": "1€",
+                    "estado": 4,
+                    "material": "madeira"
+                },
+                {
+                    "icon": "basket",
+                    "codigo": "qqweqeqweq",
+                    "nomeProduto": "i dont know",
+                    "quantidade": 4,
+                    "preco": "1€",
+                    "estado": 4,
+                    "material": "madeira"
+                },
+                {
+                    "icon": "basket",
+                    "codigo": "qqweqeqweq",
+                    "nomeProduto": "i dont know",
+                    "quantidade": 4,
+                    "preco": "1€",
+                    "estado": 4,
+                    "material": "madeira"
                 }
             ]
         }

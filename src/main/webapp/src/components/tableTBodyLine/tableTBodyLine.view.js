@@ -6,6 +6,7 @@ export default {
     },
     name: "tableTBodyLine",
     props:{
-        rowElements: {}
+        rowElements: {},
+        contexto: ""
     }
 }

@@ -20,8 +20,39 @@
 }
 
 .searchResult{
-    height: 50px;
     color: black;
     font-size: 19px;
     border-bottom: 1px solid gray;
 }
+
+/*.icon{*/
+/*    !*text-align: right;*!*/
+/*    !*width: 29%;*!*/
+/*    !*float: left;*!*/
+/*    !*margin-right: -39px;*!*/
+/*    !*left: 18px;*!*/
+/*    !*padding-right: 20px;*!*/
+/*    padding-top: 5px;*/
+/*}*/
+
+/*.icon svg{*/
+/*    color: black;*/
+/*    font-size: 40px;*/
+/*}*/
+
+.searchID{
+    /*float: left;*/
+    /*width: 20%;*/
+    /*text-align: left;*/
+    /*padding-top: 5px;*/
+    /*padding-left: 28px;*/
+    font-size: 15px;
+}
+
+/*.searchSecundary{*/
+/*    width: 56%;*/
+/*    float: right;*/
+/*    text-align: left;*/
+/*    padding-top: 15px;*/
+/*    font-size: 15px;*/
+/*}*/
