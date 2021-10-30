@@ -1,12 +1,21 @@
 <template>
-    <li :class="classStyle" :v-show="inputData.estado" v-if="contexto === 'delivery'">
+    <li :class="classStyle" :v-show="inputData.status" v-if="context === 'delivery'">
         <div class="deliverInfo">
-            {{ inputData.ref_id_clientes.nome }} <br> {{ inputData.ref_id_produtos.nome }}
+            {{ inputData.ref_id_clients.nome }} <br> {{ inputData.ref_id_products.name }}
         </div>
         <span v-if="showInfo">
             <tooltip :tooltipMsg="tooltipMsg"></tooltip>
         </span>
     </li>
+<!--    <li :class="classStyle" :v-show="inputData.status" v-if="context === 'delivery'">-->
+<!--        <div class="deliverInfo">-->
+<!--            {{ inputData.ref_id_clients }} <br> {{ inputData.ref_id_products }}-->
+<!--        </div>-->
+<!--        <span v-if="showInfo">-->
+<!--            <tooltip :tooltipMsg="tooltipMsg"></tooltip>-->
+<!--        </span>-->
+<!--    </li>-->
+
 <!--    <li :class="classStyle" :v-show="inputData.estado" v-else-if="contexto === 'searchResult'">-->
 <!--        <div class="text-center" style="margin-top: 1.3%">-->
 <!--          <table class="table" style="width: 100%;">-->

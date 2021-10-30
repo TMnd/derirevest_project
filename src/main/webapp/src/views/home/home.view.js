@@ -192,18 +192,32 @@ export default {
                     "material": "madeira"
                 }
             ],
-            dtRef: null
+            dtRef: null,
+            searchInputValue: ""
         }
     },
     created: function() {
         this.COMPANY_USER = Vue.prototype.$loggedUser.getResources().includes("COMPANY_USER");
         this.getDeliveryData();
         this.getProductAlertsData();
+        window.addEventListener("resize", this.myEventHandler);
     },
     methods: {
+        myEventHandler(e) {
+            $('#searchDataTable').DataTable().columns.adjust().draw();
+        },
         searchProduct: function () {
             this.showSearchResult = !this.showSearchResult;
             setTimeout(function(){ $('#searchDataTable').DataTable().columns.adjust().draw(); }, 100);
+            let self = this;
+
+            this.searchResult = [];
+            Vue.prototype.$http.get(Vue.prototype.$env("/produtos/searchProduct/"+this.searchInputValue))
+                .then( (response) => {
+                    console.log("search: ")
+                    console.log(response);
+                    // response.data.forEach(element => self.productAlerts.push(element));
+                });
         },
         refreshAlert: function () {
             this.getProductAlertsData();
@@ -228,7 +242,7 @@ export default {
         getDeliveryData: function () {
             let self = this;
             this.deliversData = [];
-            Vue.prototype.$http.get(Vue.prototype.$env("/entregas"))
+            Vue.prototype.$http.get(Vue.prototype.$env("/delivery"))
                 .then( (response) => {
                     response.data.forEach(element => self.deliversData.push(element));
             });
@@ -238,7 +252,6 @@ export default {
             this.productAlerts = [];
             Vue.prototype.$http.get(Vue.prototype.$env("/produtos/alerts"))
                 .then( (response) => {
-                    console.log(response);
                     response.data.forEach(element => self.productAlerts.push(element));
                 });
         },

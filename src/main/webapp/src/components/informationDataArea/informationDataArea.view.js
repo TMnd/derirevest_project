@@ -6,7 +6,7 @@ export default {
     props: {
         inputData: { type: Object, required: true},
         tooltipMsg : { type: String, required: false},
-        contexto: ""
+        context: ""
     },
     components: {
         tooltip,
@@ -19,8 +19,8 @@ export default {
         }
     },
     created() {
-        if(this.contexto === 'delivery'){
-            switch (this.inputData.estado) {
+        if(this.context === 'delivery'){
+            switch (this.inputData.status) {
                 case "0":
                     this.classStyle = "list-group-item empty";
                     this.showInfo = true;
@@ -34,7 +34,7 @@ export default {
                 default:
                     break;
             }
-        }else if(this.contexto === 'searchResult'){
+        }else if(this.context === 'searchResult'){
             this.classStyle = "searchResult";
         }
     }

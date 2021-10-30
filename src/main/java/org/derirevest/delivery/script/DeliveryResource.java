@@ -7,7 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/entregas")
+@Path("/delivery")
 public class DeliveryResource {
 
     @Inject
@@ -16,6 +16,6 @@ public class DeliveryResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJSONEntregas() {
-        return Response.ok(deliveryService.getEntregas()).build();
+        return Response.ok(deliveryService.getDeliveries()).build();
     }
 }

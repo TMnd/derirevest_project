@@ -5,21 +5,21 @@ import java.util.List;
 
 @ApplicationScoped
 public class User {
-    private String nome;
+    private String name;
     private List<String> roles;
 
     public User(){}
 
     public User(String nome) {
-        this.nome = nome;
+        this.name = nome;
     }
 
     public String getNome() {
-        return nome;
+        return name;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.name = nome;
     }
 
     public List<String> getRoles() {
@@ -33,7 +33,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "nome='" + nome + '\'' +
+                "nome='" + name + '\'' +
                 '}';
     }
 }

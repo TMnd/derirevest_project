@@ -1,6 +1,6 @@
 package org.derirevest.delivery.script;
 
-import org.derirevest.delivery.model.Entregas;
+import org.derirevest.delivery.model.Delivery;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -12,12 +12,12 @@ public class DeliveryService {
     @Inject
     EntityManager em;
 
-    public List<Entregas> getEntregas(){
-        return em.createQuery("select e from Entregas e", Entregas.class).getResultList();
+    public List<Delivery> getDeliveries(){
+        return em.createQuery("select e from Delivery e", Delivery.class).getResultList();
     }
 
-    public Entregas persistEntregas(Entregas entrega){
-        em.persist(entrega);
-        return entrega;
+    public Delivery persistDelivery(Delivery delivery){
+        em.persist(delivery);
+        return delivery;
     }
 }
