@@ -11,15 +11,16 @@
   </tr>
   <tr v-else-if="contexto === 'searchResult'" class="rowSearchResult">
     <td class="icon">
-      <iconTemplate iconClass="menuIcon" :iconType="rowElements.icon"></iconTemplate>
+      <iconTemplate v-if="rowElements.categoria === 'porta'" iconClass="menuIcon" :iconType="door"></iconTemplate>
+<!--      <iconTemplate iconClass="menuIcon" :iconType="rowElements.icon"></iconTemplate>-->
     </td>
-    <td>{{rowElements.codigo}}<br>{{rowElements.nomeProduto}}</td>
-    <td>{{rowElements.categoria}}</td>
+    <td>{{rowElements.productCode}}<br>{{rowElements.name}}</td>
+    <td>{{rowElements.category}}</td>
     <td>{{rowElements.material}}</td>
     <td>
-      <span class="v-chip theme--dark v-size--default" v-bind:class = "(rowElements.quantidade<10)?(rowElements.quantidade===0)?'empty':'almostEmpty':'enoughQuantity'">{{rowElements.quantidade}}</span>
+      <span class="v-chip theme--dark v-size--default" v-bind:class = "(rowElements.quantity<10)?(rowElements.quantity===0)?'empty':'almostEmpty':'enoughQuantity'">{{rowElements.quantity}}</span>
     </td>
-    <td>{{rowElements.preco}}</td>
+    <td>{{rowElements.price}}</td>
   </tr>
 </template>
 

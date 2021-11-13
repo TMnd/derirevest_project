@@ -7,12 +7,13 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @ApplicationScoped
 public class ProductsService {
     private static final String queryProdutos = "select p from Products p";
-    private static final String queryProdutoSearch = "SELECT %s FROM ola";
+    private static final String queryProdutoSearch = "SELECT p FROM Products p WHERE p.productCode LIKE :productCode";
 
     @Inject
     EntityManager em;
@@ -32,8 +33,9 @@ public class ProductsService {
         return outputList;
     }
 
-    public List<String> getResults(String query){
-        List<String> output = new ArrayList<>();
+    public List<HashMap<String,Object>> getResults(String query){
+        List<HashMap<String,Object>> outputList = new ArrayList<>();
+        List<Products> getListaProdutos = null;
         String formattedQuery = "";
 
         //Tipo de pesquisa:
@@ -52,15 +54,34 @@ public class ProductsService {
             case "material":
                 formattedQuery = String.format(queryProdutoSearch,"Material");
                 break;
-            default:
-                formattedQuery = String.format(queryProdutoSearch,"Codigo");
+            default: //No flag
+                String rawValue = getFlag;
+//              formattedQuery = String.format(queryProdutoSearch,"product_code",getFlag);
+//                formattedQuery = queryProdutos;
+                getListaProdutos=em.createQuery(queryProdutoSearch)
+                        .setParameter("productCode", rawValue)
+                        .getResultList();
                 break;
         }
-        List<Products> listaProdutos= em.createQuery(formattedQuery, Products.class).getResultList();
+//        List<Products> listaProdutos= em.createQuery(formattedQuery, Products.class).getResultList();
 
-        System.out.println(listaProdutos);
+        System.out.println(getListaProdutos);
+        if(getListaProdutos!=null){
+            getListaProdutos.forEach((element) -> {
+                HashMap<String, Object> product = new HashMap<>();
+                product.put("productCode",element.getProductCode());
+                product.put("name",element.getName());
+                product.put("category",element.getRefCategory().getDesignation());
+                product.put("material",element.getRefMaterial().getDesignation());
+                product.put("quantity",element.getQuantity());
+                product.put("price",element.getPrice());
+                outputList.add(product);
+            });
+        }
 
-        return output;
+        System.out.println(outputList);
+
+        return outputList;
     }
 
     public Products persistProdutos(Products products){

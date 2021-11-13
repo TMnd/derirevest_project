@@ -36,162 +36,7 @@ export default {
             selectedDeliveryFilter: [0,1,2],
             selectedAlertsFilter: [0,1],
             showSearchResult: false,
-            searchResult: [
-                {
-                    "icon": "door",
-                    "categoria": "porta",
-                    "tipo": "--",
-                    "codigo": "A12R23",
-                    "nomeProduto": "porta 1",
-                    "quantidade": 200,
-                    "preco": "2€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "door",
-                    "categoria": "porta",
-                    "tipo": "--",
-                    "codigo": "aaaaa",
-                    "nomeProduto": "porta 2",
-                    "quantidade": 0,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                },
-                {
-                    "icon": "basket",
-                    "categoria": "aqa",
-                    "tipo": "--",
-                    "codigo": "qqweqeqweq",
-                    "nomeProduto": "i dont know",
-                    "quantidade": 4,
-                    "preco": "1€",
-                    "estado": 4,
-                    "material": "madeira"
-                }
-            ],
+            searchResult: [],
             dtRef: null,
             searchInputValue: ""
         }
@@ -207,16 +52,26 @@ export default {
             $('#searchDataTable').DataTable().columns.adjust().draw();
         },
         searchProduct: function () {
-            this.showSearchResult = !this.showSearchResult;
-            setTimeout(function(){ $('#searchDataTable').DataTable().columns.adjust().draw(); }, 100);
+            // this.showSearchResult = !this.showSearchResult;
+            this.showSearchResult=true;
             let self = this;
 
+            setTimeout(function(){ $('#searchDataTable').DataTable().columns.adjust().draw(); }, 100);
+
             this.searchResult = [];
-            Vue.prototype.$http.get(Vue.prototype.$env("/produtos/searchProduct/"+this.searchInputValue))
+            Vue.prototype.$http.get(Vue.prototype.$env(`/produtos/searchProduct/${self.searchInputValue}`))
                 .then( (response) => {
                     console.log("search: ")
                     console.log(response);
-                    // response.data.forEach(element => self.productAlerts.push(element));
+                    response.data.forEach(element => self.searchResult.push(element));
+                    console.log("------------------")
+                    console.log(self.searchResult);
+                    //
+                    if(self.searchResult.length>0){
+                        $(".dataTables_empty").hide();
+                    }else{
+                        $(".dataTables_empty").show();
+                    }
                 });
         },
         refreshAlert: function () {
