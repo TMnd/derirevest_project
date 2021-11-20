@@ -6,6 +6,9 @@
     <span v-if="inputIconShow === 'search'">
       <b-icon-search></b-icon-search>
     </span>
+    <span v-if="inputIconShow === 'info'" v-b-tooltip.hover :title="tooltipMsg">
+      <b-icon icon="exclamation-circle-fill" variant="dark"></b-icon>
+    </span>
   </button>
 </template>
 

@@ -32,12 +32,15 @@
       <div class="col-lg-6 order-1 order-lg-2">
         <div class="homeFirstRow_section">
           <div class="input-group" style="margin-bottom: 10px;">
+<!--            TODO: caso esteja vazio tem de dar erro-->
             <input class="form-control py-2" type="search" placeholder="Insira o codigo do produto..."
-                   id="product-search-input" v-model="searchInputValue">
+                   id="product-search-input" v-model="searchInputValue" v-on:keyup.enter="searchProduct">
             <span class="input-group-append">
-                            <actionButton style="line-height: 1.8;" inputIconShow="search"
-                                          @buttonFunction="searchProduct"></actionButton>
-                        </span>
+                <actionButton style="line-height: 1.8;" inputIconShow="info" :tooltipMsg="inputToolTip"></actionButton>
+            </span>
+            <span class="input-group-append">
+                <actionButton style="line-height: 1.8;" inputIconShow="search" @buttonFunction="searchProduct"></actionButton>
+            </span>
           </div>
           <div class="mainPart2" v-show="showSearchResult">
             <div>

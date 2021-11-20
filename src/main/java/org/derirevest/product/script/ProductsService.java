@@ -13,7 +13,9 @@ import java.util.List;
 @ApplicationScoped
 public class ProductsService {
     private static final String queryProdutos = "select p from Products p";
-    private static final String queryProdutoSearch = "SELECT p FROM Products p WHERE p.productCode LIKE :productCode";
+//    private static final String queryProdutoSearch = "SELECT p FROM Products p WHERE p.productCode LIKE :productCode";
+    private static final String queryProdutoSearch = "SELECT p FROM Products p WHERE p.%s LIKE :filterVariable";
+    private static final String queryJoinProdutoSearch = "SELECT p FROM Products p JOIN p.%s m WHERE m.%s = :filterVariable";
 
     @Inject
     EntityManager em;
@@ -37,33 +39,34 @@ public class ProductsService {
         List<HashMap<String,Object>> outputList = new ArrayList<>();
         List<Products> getListaProdutos = null;
         String formattedQuery = "";
+        String parameterkey ="filterVariable";
+        String parameterValue ="";
 
-        //Tipo de pesquisa:
-        //  - Sem flag:             Pesquisar por codigo de produto
-        //  - Flag: 'Nome:' :       Pesquisar pelo nome
-        //  - Flag: 'Categoria:'    Pesquisar por categoria
-        //  - Flag: 'Material:'     Pesquisa por material
-        String getFlag = query.split(":")[0];
-        switch (getFlag.toLowerCase()){
+        String[] getFlags = query.split(":");
+        switch (getFlags[0].toLowerCase()){
             case "nome":
-                formattedQuery = String.format(queryProdutoSearch,"Nome");
+                formattedQuery = String.format(queryProdutoSearch,"name");
+                parameterValue =getFlags[1].trim();
                 break;
             case "categoria":
-                formattedQuery = String.format(queryProdutoSearch,"Categoria");
+                formattedQuery = String.format(queryJoinProdutoSearch,"refCategory","designation");
+                parameterValue =getFlags[1].trim();
                 break;
             case "material":
-                formattedQuery = String.format(queryProdutoSearch,"Material");
+                formattedQuery = String.format(queryJoinProdutoSearch,"refMaterial","designation");
+                parameterValue =getFlags[1].trim();
                 break;
             default: //No flag
-                String rawValue = getFlag;
-//              formattedQuery = String.format(queryProdutoSearch,"product_code",getFlag);
-//                formattedQuery = queryProdutos;
-                getListaProdutos=em.createQuery(queryProdutoSearch)
-                        .setParameter("productCode", rawValue)
-                        .getResultList();
+                formattedQuery = String.format(queryProdutoSearch,"productCode");
+                parameterValue =getFlags[0];
                 break;
         }
-//        List<Products> listaProdutos= em.createQuery(formattedQuery, Products.class).getResultList();
+
+        if(!formattedQuery.isEmpty()) {
+            getListaProdutos = em.createQuery(formattedQuery)
+                    .setParameter(parameterkey, parameterValue)
+                    .getResultList();
+        }
 
         System.out.println(getListaProdutos);
         if(getListaProdutos!=null){

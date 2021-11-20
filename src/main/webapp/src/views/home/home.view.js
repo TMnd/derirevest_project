@@ -6,6 +6,7 @@ import actionButton from "../../components/actionButton/actionButton";
 import radialMenuWithLabel from "../../components/radialMenuWithLabel/radialMenuWithLabel";
 import tableTBodyLine from "../../components/tableTBodyLine/tableTBodyLine";
 import iconTemplate from '../../components/iconTemplate/iconTemplate'
+import tooltip from "@/components/tooltip/tooltip";
 // import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 import 'datatables.net-responsive-dt/js/responsive.dataTables'
@@ -19,11 +20,12 @@ export default {
         actionButton,
         radialMenuWithLabel,
         tableTBodyLine,
-        iconTemplate
+        iconTemplate,
+        tooltip
     },
     name: 'Home',
     props: {
-        msg: String
+        msg: String,
     },
     data: function() {
         return {
@@ -38,7 +40,8 @@ export default {
             showSearchResult: false,
             searchResult: [],
             dtRef: null,
-            searchInputValue: ""
+            searchInputValue: "",
+            inputToolTip: "Flags a usar: ==> material: *procurar por material => nome: *procurar por nome* => catgoria *procurar por categoria*, => sem flag, procura pelo codigo de produto.",
         }
     },
     created: function() {
@@ -61,12 +64,7 @@ export default {
             this.searchResult = [];
             Vue.prototype.$http.get(Vue.prototype.$env(`/produtos/searchProduct/${self.searchInputValue}`))
                 .then( (response) => {
-                    console.log("search: ")
-                    console.log(response);
                     response.data.forEach(element => self.searchResult.push(element));
-                    console.log("------------------")
-                    console.log(self.searchResult);
-                    //
                     if(self.searchResult.length>0){
                         $(".dataTables_empty").hide();
                     }else{
