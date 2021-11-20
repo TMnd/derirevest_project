@@ -8,7 +8,7 @@
             <router-view></router-view>
           </div>
         </div>
-        <Sidebar :v-show=showSideBar />
+        <Sidebar />
       </div>
       <Footer/>
     </div>
@@ -30,7 +30,6 @@ export default {
   },
   data: function() {
       return {
-        showSideBar: false,
         posts: [],
       }
     },
@@ -81,5 +80,7 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+
 
 </style>

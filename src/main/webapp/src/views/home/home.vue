@@ -43,24 +43,38 @@
             </span>
           </div>
           <div class="mainPart2" v-show="showSearchResult">
-            <div>
-              <table id="searchDataTable" class="table table-striped table-bordered responsive nowrap"
-                     style="width:100%" v-show="this.checkAuthorization('DELIVERY_SEE_LIST')">
-                <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Produto</th>
-                  <th scope="col">Categoria</th>
-                  <th scope="col">Material</th>
-                  <th scope="col">Quantidade</th>
-                  <th scope="col">Preço</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tableTBodyLine v-for="(i, index) in searchResult" :rowElements="i" v-bind:key="index"
-                                :contexto="'searchResult'"></tableTBodyLine>
-                </tbody>
-              </table>
+            <div v-show="this.checkAuthorization('DELIVERY_SEE_LIST')">
+              <v-data-table
+                  :headers="searchHeader"
+                  :items="searchResult"
+                  :items-per-page="10"
+                  item-key="productCode"
+                  class="elevation-1"
+                  :footer-props="{
+                    'items-per-page-text':'',
+                    'items-per-page-options':[]
+                  }"
+              >
+                <template v-slot:item="props">
+                  <tr>
+                    <td class="icon">
+                      <iconTemplate iconClass="menuIcon" :iconType="props.item.category"></iconTemplate>
+                    </td>
+                    <td>{{ props.item.productCode }}</td>
+                    <td>{{ props.item.name }}</td>
+                    <td>{{ props.item.material }}</td>
+                    <td>
+                      <span class="v-chip theme--dark v-size--default" v-bind:class = "(props.item.quantity<10)?(props.item.quantity===0)?'empty':'almostEmpty':'enoughQuantity'">{{props.item.quantity}}</span>
+                    </td>
+                    <td>{{ props.item.price }}</td>
+                  </tr>
+                </template>
+                <template v-slot:no-data>
+                  <v-alert :value="true" color="error">
+                    Não se encontrou resultados.
+                  </v-alert>
+                </template>
+              </v-data-table>
             </div>
           </div>
         </div>

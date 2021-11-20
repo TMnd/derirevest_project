@@ -9,19 +9,6 @@
         </span>
     </td>
   </tr>
-  <tr v-else-if="contexto === 'searchResult'" class="rowSearchResult">
-    <td class="icon">
-      <iconTemplate v-if="rowElements.categoria === 'porta'" iconClass="menuIcon" :iconType="door"></iconTemplate>
-<!--      <iconTemplate iconClass="menuIcon" :iconType="rowElements.icon"></iconTemplate>-->
-    </td>
-    <td>{{rowElements.productCode}}<br>{{rowElements.name}}</td>
-    <td>{{rowElements.category}}</td>
-    <td>{{rowElements.material}}</td>
-    <td>
-      <span class="v-chip theme--dark v-size--default" v-bind:class = "(rowElements.quantity<10)?(rowElements.quantity===0)?'empty':'almostEmpty':'enoughQuantity'">{{rowElements.quantity}}</span>
-    </td>
-    <td>{{rowElements.price}}</td>
-  </tr>
 </template>
 
 <script src="./tableTBodyLine.view.js"></script>

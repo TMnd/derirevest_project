@@ -39,6 +39,19 @@ export default {
             selectedAlertsFilter: [0,1],
             showSearchResult: false,
             searchResult: [],
+            searchHeader: [
+                {
+                    text: 'Categoria',
+                    value: 'category',
+                    align: 'left',
+                    sortable: false
+                },
+                { text: 'Codigo Prod.', value: 'productCode', align: 'center' },
+                { text: 'Nome', value: 'name', align: 'center' },
+                { text: 'Material', value: 'material', align: 'center' },
+                { text: 'Quantidade', value: 'quantity', align: 'center' },
+                { text: 'Preço', value: 'price', align: 'center' }
+            ],
             dtRef: null,
             searchInputValue: "",
             inputToolTip: "Flags a usar: ==> material: *procurar por material => nome: *procurar por nome* => catgoria *procurar por categoria*, => sem flag, procura pelo codigo de produto.",
@@ -48,28 +61,17 @@ export default {
         this.COMPANY_USER = Vue.prototype.$loggedUser.getResources().includes("COMPANY_USER");
         this.getDeliveryData();
         this.getProductAlertsData();
-        window.addEventListener("resize", this.myEventHandler);
     },
     methods: {
-        myEventHandler(e) {
-            $('#searchDataTable').DataTable().columns.adjust().draw();
-        },
         searchProduct: function () {
             // this.showSearchResult = !this.showSearchResult;
             this.showSearchResult=true;
             let self = this;
 
-            setTimeout(function(){ $('#searchDataTable').DataTable().columns.adjust().draw(); }, 100);
-
             this.searchResult = [];
             Vue.prototype.$http.get(Vue.prototype.$env(`/produtos/searchProduct/${self.searchInputValue}`))
                 .then( (response) => {
                     response.data.forEach(element => self.searchResult.push(element));
-                    if(self.searchResult.length>0){
-                        $(".dataTables_empty").hide();
-                    }else{
-                        $(".dataTables_empty").show();
-                    }
                 });
         },
         refreshAlert: function () {
@@ -125,33 +127,5 @@ export default {
             }
             return false;
         }
-    },
-    mounted: function (){
-        this.dtRef = $('#searchDataTable').DataTable({
-            responsive: true,
-            scrollCollapse: true,
-            colReorder: false,
-            keys: true,
-            select: true,
-            columnDefs: [
-                { orderable: false, targets: -1 }
-            ],
-            aLengthMenu: [[5, 10, 15, 20,25, 30, 35, -1], [5, 10, 15, 20,25, 30, 35, "All"]],
-            pageLength: 5,
-            language: {
-                lengthMenu: "Monstrar _MENU_ produtos por pagina",
-                zeroRecords: "Não foi encontrado dados",
-                info: "Mostrando a pagina _PAGE_ de _PAGES_",
-                infoEmpty: "Não foi encontrado dados",
-                infoFiltered: "(filtrado de um total de _MAX_ produtos)",
-                oPaginate: {
-                    sFirst: "Primeiro",
-                    sLast: "Ultimo",
-                    sNext: "Proxima",
-                    sPrevious: "Anterior"
-                },
-            },
-            searching: false
-        });
     }
 }

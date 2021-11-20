@@ -7,6 +7,7 @@
     overflow: hidden !important;
     border-top: 1px solid #1e1e1f !important;
     border-left: 1px solid #1e1e1f !important;
+    display: none !important;
 }
 
 .ui-layout-toggle-close{

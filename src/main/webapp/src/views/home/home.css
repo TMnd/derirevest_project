@@ -191,3 +191,7 @@ hr.home_brakLine {
 .deliveryOptions:hover{
     cursor: pointer;
 }
+
+.v-data-table-header-mobile__wrapper{
+    display: none !important;
+}
