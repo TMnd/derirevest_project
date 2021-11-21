@@ -64,8 +64,6 @@ export default {
 
             Vue.prototype.$sideBar.setSidebarObj($outerLayout);
 
-            // console.log(Vue.prototype.$layout);
-
             Vue.prototype.$sideBar.setSidebar("hide","west")
 
             // eslint-disable-next-line

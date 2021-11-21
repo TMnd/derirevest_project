@@ -1,7 +1,7 @@
 package org.derirevest.product.script;
 
 import org.derirevest.product.model.Products;
-import org.derirevest.product.model.Result;
+import org.derirevest.product.model.Alarm;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,24 +13,24 @@ import java.util.List;
 @ApplicationScoped
 public class ProductsService {
     private static final String queryProdutos = "select p from Products p";
-//    private static final String queryProdutoSearch = "SELECT p FROM Products p WHERE p.productCode LIKE :productCode";
     private static final String queryProdutoSearch = "SELECT p FROM Products p WHERE p.%s LIKE :filterVariable";
     private static final String queryJoinProdutoSearch = "SELECT p FROM Products p JOIN p.%s m WHERE m.%s = :filterVariable";
 
     @Inject
     EntityManager em;
 
-    public List<List<Result>> getAlertProducts(){
+    public List<Alarm> getAlertProducts(){
         List<Products> productsList = em.createQuery(queryProdutos, Products.class).getResultList();
-        List<List<Result>> outputList = new ArrayList<>();
+        List<Alarm> outputList = new ArrayList<>();
 
         for (Products product: productsList) {
-            List<Result> results = new ArrayList<>();
             if(product.getQuantity()<10){
-                results.add(new Result("data",product.getName()));
-                results.add(new Result("data",product.getQuantity()));
+                if(product.getQuantity()==0) {
+                    outputList.add(new Alarm(product,0));
+                }else{
+                    outputList.add(new Alarm(product,1));
+                }
             }
-            outputList.add(results);
         }
         return outputList;
     }

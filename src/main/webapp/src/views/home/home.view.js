@@ -52,6 +52,15 @@ export default {
                 { text: 'Quantidade', value: 'quantity', align: 'center' },
                 { text: 'Preço', value: 'price', align: 'center' }
             ],
+            alarmHeader: [
+                {
+                    text: 'Codigo Prod.',
+                    value: 'productCode',
+                    align: 'left',
+                    sortable: false
+                },
+                { text: 'Quantidade', value: 'quantity', align: 'center', sortable: false }
+            ],
             dtRef: null,
             searchInputValue: "",
             inputToolTip: "Flags a usar: ==> material: *procurar por material => nome: *procurar por nome* => catgoria *procurar por categoria*, => sem flag, procura pelo codigo de produto.",
@@ -64,15 +73,24 @@ export default {
     },
     methods: {
         searchProduct: function () {
-            // this.showSearchResult = !this.showSearchResult;
-            this.showSearchResult=true;
             let self = this;
+            if(this.searchInputValue){
+                this.showSearchResult=true;
+                this.searchResult = [];
 
-            this.searchResult = [];
-            Vue.prototype.$http.get(Vue.prototype.$env(`/produtos/searchProduct/${self.searchInputValue}`))
-                .then( (response) => {
-                    response.data.forEach(element => self.searchResult.push(element));
-                });
+                Vue.prototype.$http.get(Vue.prototype.$env(`/produtos/searchProduct/${self.searchInputValue}`))
+                    .then( (response) => {
+                        response.data.forEach(element => self.searchResult.push(element));
+                    });
+            }else{
+                document.getElementById("product-search-input").style.color = "red";
+                this.searchInputValue = "Insira o codigo do produto..."
+
+                setTimeout(function(){
+                    self.searchInputValue="";
+                    document.getElementById("product-search-input").style.color = "";
+                }, 3000);
+            }
         },
         refreshAlert: function () {
             this.getProductAlertsData();

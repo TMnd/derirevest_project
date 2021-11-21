@@ -1,1 +1,0 @@
-Usually, you do not need this folder. It could be used to save some dummy data.
