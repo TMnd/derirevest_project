@@ -4,13 +4,14 @@ import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
 import org.derirevest.logger.ActionLog;
 import org.derirevest.logger.ActionLogService;
-import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
 import org.derirevest.helpers.Helper;
+
+import java.util.logging.Logger;
 
 @ApplicationScoped
 public class AppLifecycleBean {

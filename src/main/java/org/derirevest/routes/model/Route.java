@@ -8,10 +8,10 @@ public class Route {
     private Integer routeGroup;
 
     public Route(String path, String component, String icon, String title, Integer routeGroup) {
+        this.title = title;
         this.path = path;
         this.component = component;
         this.icon = icon;
-        this.title = title;
         this.routeGroup = routeGroup;
     }
 

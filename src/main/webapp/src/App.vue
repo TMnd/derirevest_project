@@ -1,17 +1,15 @@
 <template>
-  <div>
-    <div>
-      <Header applicationName="Derirevest S.U Lda"/>
-      <div id="layouts">
-        <div class="ui-layout-center fullHeight row">
-          <div class="col-lg-12">
-            <router-view></router-view>
-          </div>
+  <div data-app>
+    <Header applicationName="Derirevest S.U Lda"/>
+    <div id="layouts">
+      <div class="ui-layout-center fullHeight row">
+        <div class="col-lg-12">
+          <router-view></router-view>
         </div>
-        <Sidebar />
       </div>
-      <Footer/>
+      <Sidebar />
     </div>
+    <Footer/>
   </div>
 </template>
 

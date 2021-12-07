@@ -7,6 +7,7 @@ import radialMenuWithLabel from "../../components/radialMenuWithLabel/radialMenu
 import tableTBodyLine from "../../components/tableTBodyLine/tableTBodyLine";
 import iconTemplate from '../../components/iconTemplate/iconTemplate'
 import tooltip from "@/components/tooltip/tooltip";
+import modalDialog from "@/components/modalDialog/modalDialog";
 // import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 import 'datatables.net-responsive-dt/js/responsive.dataTables'
@@ -21,7 +22,8 @@ export default {
         radialMenuWithLabel,
         tableTBodyLine,
         iconTemplate,
-        tooltip
+        tooltip,
+        modalDialog
     },
     name: 'Home',
     props: {
@@ -38,6 +40,7 @@ export default {
             selectedDeliveryFilter: [0,1,2],
             selectedAlertsFilter: [0,1],
             showSearchResult: false,
+            showSearchResultClearButton: false,
             searchResult: [],
             searchHeader: [
                 {
@@ -64,16 +67,30 @@ export default {
             dtRef: null,
             searchInputValue: "",
             inputToolTip: "Flags a usar: ==> material: *procurar por material => nome: *procurar por nome* => catgoria *procurar por categoria*, => sem flag, procura pelo codigo de produto.",
+            focusSingleProduct: false
         }
     },
     created: function() {
         this.COMPANY_USER = Vue.prototype.$loggedUser.getResources().includes("COMPANY_USER");
         this.getDeliveryData();
         this.getProductAlertsData();
+
     },
     methods: {
+        /*modal(name) {
+            this.$refs.modal.helloWorld();
+        },*/
+        selectSearchProduct: function (row) {
+            this.$refs.modalDialog.openDialog(row, "home");
+        },
+        searchProductClear: function() {
+            this.showSearchResult = false;
+            this.showSearchResultClearButton = false;
+            this.searchResult = [];
+        },
         searchProduct: function () {
             let self = this;
+            this.showSearchResultClearButton=true;
             if(this.searchInputValue){
                 this.showSearchResult=true;
                 this.searchResult = [];
@@ -81,6 +98,10 @@ export default {
                 Vue.prototype.$http.get(Vue.prototype.$env(`/produtos/searchProduct/${self.searchInputValue}`))
                     .then( (response) => {
                         response.data.forEach(element => self.searchResult.push(element));
+                        document.getElementById("product-search-input").addEventListener("search", function(event) {
+                            this.showSearchResult = false;
+                            this.searchResult=[];
+                        });
                     });
             }else{
                 document.getElementById("product-search-input").style.color = "red";
